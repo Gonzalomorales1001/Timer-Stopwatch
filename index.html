@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Timer" />
+    <meta name="keywords" content="js, date, JavaScript, dom, bom" />
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" 
+    rel="stylesheet" 
+    integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" 
+    crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="style.css" />
+    <title>Timer and Chronometer</title>
+  </head>
+  <body>
+    <main id="contenedor" class="container text-center text-light">
+      <section>
+        <h1 class="text-center mt-5">Timer</h1>
+        <hr>
+        <h3>Select Timer</h3>
+        <div class="rounded p-3">
+            <div class="list-group mx-auto">
+                <button type="button" class="list-group-item" onclick="timer(15)">15 Seconds</button>
+                <button type="button" class="list-group-item" onclick="timer(30)">30 Seconds</button>
+                <button type="button" class="list-group-item" onclick="timer(1)">1 Minute</button>
+                <button type="button" class="list-group-item" onclick="timer(5)">5 Minutes</button>
+                <button type="button" class="list-group-item" onclick="timer(10)">10 Minutes</button>
+                <button type="button" class="list-group-item" onclick="timer(60)">1 Hour</button>
+              </div>
+              <div class="list-group mx-auto mt-4">
+                <button type="button" class="list-group-item" data-bs-toggle="modal" data-bs-target="#customTimeModal">Custom</button>
+                <button type="button" class="list-group-item" onclick="restore()">Delete</button>
+            </div>
+        </div>
+        <div>
+          <div>
+            <span id="hours" class="time text-center">00</span>
+            <p class="time text-center">:</p>
+            <span id="minutes" class="time text-center">00</span>
+            <p class="time text-center">:</p>
+            <span id="seconds" class="time text-center">00</span>
+          </div>
+          <button id="StartTime" class="btn btn-success disabled" onclick="startTimer()">Start <i class="bi bi-play-circle"></i></button>
+          <button id="StopTime" class="btn btn-danger disabled" onclick="restore()">Stop <i class="bi bi-pause-circle"></i></button>
+        </div>
+      </section>
+      <section>
+        <h1 class="text-center mt-5">Chronometer</h1>
+        <hr>
+        <article class="d-flex flex-column">
+          <div class="d-flex justify-content-center">
+            <p class="time" id="hour">00</p>
+            <p class="time" id="minute">:00</p>
+            <p class="time" id="second">:00</p>
+            <p class="time" id="milisecond">:0000</p>
+          </div>
+          <div>
+            <button class="mb-3 me-1 btn btn-success" id="start" onclick="start()">Start <i class="bi bi-play-circle"></i></button>
+            <button class="mb-3 me-1 btn btn-danger" id="stop" onclick="stop()">Stop <i class="bi bi-pause-circle"></i></button>
+            <button class="mb-3 me-1 btn btn-primary" id="reanude" onclick="start()">Resume <i class="bi bi-arrow-counterclockwise"></i></button>
+            <button class="mb-3 me-1 btn btn-warning" id="restart" onclick="restart()">Restart <i class="bi bi-arrow-clockwise"></i></button>
+          </div>
+        </article>
+      </section>
+    </main>
+    <footer class="text-center bg-dark text-light py-3">
+    </footer>
+    <div class="modal fade" id="customTimeModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">Select Custom Time</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <form action="">
+            <div class="modal-body">
+              <div class="input-group">
+                <span class="input-group-text">Hours</span>
+                <input type="number" id="customHours" aria-label="Minutes" min="0" max="99" class="form-control" value="0" required>
+                <span class="input-group-text">Minutes</span>
+                <input type="number" id="customMinutes" aria-label="Minutes" min="0" max="59" class="form-control" value="0" required>
+                <span class="input-group-text">Seconds</span>
+                <input type="number" id="customSeconds" aria-label="Seconds" min="0" max="59" class="form-control" value="0" required>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary" onclick="timer(0,1)" data-bs-dismiss="modal">Save changes</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" 
+    integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" 
+    crossorigin="anonymous"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
