@@ -12,6 +12,12 @@ let hours=0
 let minutes=0
 let seconds=0
 
+const stringify=(unit)=>{
+    if(unit<10){
+        return `0${unit}`
+    }else{return unit}
+}
+
 const timer=(timeSet,custom=0)=>{
     startTime.className='btn btn-success'
 
@@ -21,10 +27,10 @@ const timer=(timeSet,custom=0)=>{
             seconds+=timeSet
             if(seconds>=60){
                 minutes++
-                displayMinutes.innerHTML=`0${minutes}`
+                displayMinutes.innerHTML=stringify(minutes)
                 seconds=seconds-60
             }
-            displaySeconds.innerHTML=`0${seconds}`
+            displaySeconds.innerHTML=stringify(seconds)
         break
         case 1:
         case 5:
@@ -32,14 +38,14 @@ const timer=(timeSet,custom=0)=>{
             minutes+=timeSet
             if(minutes>=60){
                 hours++
-                displayHours.innerHTML=`0${hours}`
+                displayHours.innerHTML=stringify(hours)
                 minutes=minutes-60
             }
-            displayMinutes.innerHTML=`0${minutes}`
+            displayMinutes.innerHTML=stringify(minutes)
         break
         case 60:
             hours+=1
-            displayHours.innerHTML=`0${hours}`  
+            displayHours.innerHTML=stringify(hours) 
     }
 
     if(custom==1){
@@ -51,9 +57,9 @@ const timer=(timeSet,custom=0)=>{
         if(isNaN(minutes)){minutes=0}
         if(isNaN(seconds)){seconds=0}
 
-        displayHours.innerHTML=`0${hours}`
-        displayMinutes.innerHTML=`0${minutes}`
-        displaySeconds.innerHTML=`0${seconds}`
+        displayHours.innerHTML=stringify(hours)
+        displayMinutes.innerHTML=stringify(minutes)
+        displaySeconds.innerHTML=stringify(seconds)
     }
 }
 
@@ -98,8 +104,8 @@ const startTimer=()=>{
             }
         }
         seconds--
-        displaySeconds.innerHTML=`0${seconds}`
-        displayMinutes.innerHTML=`0${minutes}`
-        displayHours.innerHTML=`0${hours}`
-    },1)
+        displaySeconds.innerHTML=stringify(seconds)
+        displayMinutes.innerHTML=stringify(minutes)
+        displayHours.innerHTML=stringify(hours)
+    },1000)
 }
