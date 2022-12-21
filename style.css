@@ -1,3 +1,9 @@
+@font-face {
+  font-family: DigitalClock;
+  src: url(/font/ticking-timebomb-bb.regular.ttf);
+}
+
+
 body {
   display: flex;
   flex-direction: column;
@@ -35,8 +41,9 @@ main {
 
 .time {
   display: inline-block;
-  font-size: 80px;
-  font-family: Courier, sans-serif;
+  font-size: 100px;
+  font-family: DigitalClock, Courier, monospace, sans-serif;
+
 }
 
 .modal{
