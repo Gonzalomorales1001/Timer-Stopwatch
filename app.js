@@ -3,6 +3,7 @@ let disabled=document.createAttribute('disabled')
 
 let startTime=document.querySelector('#StartTime')
 let stopTime=document.querySelector('#StopTime')
+let interval=0
 
 let displayHours=document.querySelector('#hours')
 let displayMinutes=document.querySelector('#minutes')
@@ -66,6 +67,7 @@ const timer=(timeSet,custom=0)=>{
 const restore=()=>{
     startTime.className='btn btn-success disabled'
     stopTime.className='btn btn-danger disabled'
+    listGroupItems.forEach((node)=>node.removeAttribute("disabled"))
 
     hours=00
     minutes=00
@@ -82,12 +84,10 @@ const startTimer=()=>{
 
     listGroupItems.forEach((node)=>node.setAttribute("disabled",""))
 
-    let interval=setInterval(()=>{
+    interval=setInterval(()=>{
         if(hours==0&&minutes==0&&seconds==0){
-            startTime.className='btn btn-success disabled'
-            stopTime.className='btn btn-danger disabled'
-            listGroupItems.forEach((node)=>node.removeAttribute("disabled"))
-            clearInterval(interval)
+            stopTimer()
+            timeIsOut()
             return 
         }
         if(seconds==0){
@@ -109,3 +109,21 @@ const startTimer=()=>{
         displayHours.innerHTML=stringify(hours)
     },1000)
 }
+
+const stopTimer=()=>{
+    clearInterval(interval)
+    restore()
+}
+
+// Time Out Modal and Alarm
+const timeOutModal = new bootstrap.Modal(document.getElementById('TimeOutModal'))
+const alarm = new Audio('/sound/alarm.mp3')
+alarm.loop=true
+
+const timeIsOut=()=>{
+    timeOutModal.show()
+    alarm.currentTime=0
+    alarm.play()
+}
+
+const stopAlarm=()=>alarm.pause()

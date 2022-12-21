@@ -44,7 +44,7 @@
             <span id="seconds" class="time text-center">00</span>
           </div>
           <button id="StartTime" class="btn btn-success disabled" onclick="startTimer()">Start <i class="bi bi-play-circle"></i></button>
-          <button id="StopTime" class="btn btn-danger disabled" onclick="restore()">Stop <i class="bi bi-pause-circle"></i></button>
+          <button id="StopTime" class="btn btn-danger disabled" onclick="stopTimer()">Stop <i class="bi bi-pause-circle"></i></button>
         </div>
       </section>
       <section>
@@ -67,7 +67,11 @@
       </section>
     </main>
     <footer class="text-center bg-dark text-light py-3">
+      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#TimeOutModal">
+        Launch demo modal
+      </button>
     </footer>
+    <!-- custom time modal -->
     <div class="modal fade" id="customTimeModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
@@ -91,6 +95,27 @@
               <button type="button" class="btn btn-primary" onclick="timer(0,1)" data-bs-dismiss="modal">Save changes</button>
             </div>
           </form>
+        </div>
+      </div>
+    </div>
+    <!-- time out modal -->
+    <div class="modal fade" id="TimeOutModal" data-bs-backdrop="static" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">Time Out</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="stopAlarm()"></button>
+          </div>
+          <div class="modal-body">
+            <div class="d-flex justify-content-center text-black">
+              <p class="time" id="hour">-00</p>
+              <p class="time" id="minute">:00</p>
+              <p class="time" id="second">:00</p>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary" data-bs-dismiss="modal" onclick="stopAlarm()">Close</button>
+          </div>
         </div>
       </div>
     </div>

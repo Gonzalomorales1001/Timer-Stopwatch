@@ -65,7 +65,7 @@ main {
   }
 }
 
-@media (max-width: 575.98px) { 
+@media (max-width: 475.98px) { 
   .time {
     font-size: 40px;
   }
