@@ -1,3 +1,4 @@
+//timer
 let listGroupItems=document.querySelectorAll('.list-group-item')
 let disabled=document.createAttribute('disabled')
 
@@ -115,15 +116,121 @@ const stopTimer=()=>{
     restore()
 }
 
-// Time Out Modal and Alarm
-const timeOutModal = new bootstrap.Modal(document.getElementById('TimeOutModal'))
+// Time Out modal and Alarm
+const timeOutmodal = new bootstrap.Modal(document.getElementById('TimeOutModal'))
 const alarm = new Audio('/sound/alarm.mp3')
 alarm.loop=true
 
 const timeIsOut=()=>{
-    timeOutModal.show()
+    timeOutmodal.show()
     alarm.currentTime=0
     alarm.play()
+    modalTimeOutChronometer()
 }
 
-const stopAlarm=()=>alarm.pause()
+const stopAlarm=()=>{
+    alarm.pause()
+    clearInterval(modalInterval)
+}
+
+let modalSeconds=0
+let modalMinutes=0
+let modalHours=0
+
+let displayModalSeconds=document.querySelector('#modalSecond')
+let displayModalMinutes=document.querySelector('#modalMinute')
+let displayModalHours=document.querySelector('#modalHour')
+
+let modalInterval=0
+
+const modalTimeOutChronometer=()=>{
+    modalInterval=setInterval(()=>{
+        modalSeconds++
+        if(modalSeconds>59){
+            modalMinutes++
+            modalSeconds=0
+        }
+        if(modalMinutes>59){
+            modalHours++
+            modalMinutes=0
+            modalSeconds=0
+        }
+
+        displayModalSeconds.innerHTML=`:${stringify(modalSeconds)}`
+        displayModalMinutes.innerHTML=`:${stringify(modalMinutes)}`
+        displayModalHours.innerHTML=`:${stringify(modalHours)}`
+
+    },1000)
+}
+
+
+//chronometer
+let chCentiseconds=0
+let chSeconds=0
+let chMinutes=0
+let chHours=0
+
+let chInterval=0
+
+let displayChCentiseconds=document.querySelector('#centisecond')
+let displayChSeconds=document.querySelector('#second')
+let displayChMinutes=document.querySelector('#minute')
+let displayChHours=document.querySelector('#hour')
+
+const start=()=>{
+    chInterval=setInterval(chronometer,10)
+
+    document.querySelector('#start').setAttribute('disabled',"")
+    document.querySelector('#resume').setAttribute('disabled',"")
+    document.querySelector('#restart').setAttribute('disabled',"")
+
+    document.querySelector('#stop').removeAttribute('disabled')
+}
+
+const stop=()=>{
+    clearInterval(chInterval)
+    
+    document.querySelector('#resume').removeAttribute('disabled')
+    document.querySelector('#restart').removeAttribute('disabled')
+}
+
+const restart=()=>{
+    chCentiseconds=0
+    chSeconds=0
+    chMinutes=0
+    chHours=0
+
+    displayChCentiseconds.innerHTML=`:00`
+    displayChSeconds.innerHTML=`:00`
+    displayChMinutes.innerHTML=`:00`
+    displayChHours.innerHTML='00'
+
+    document.querySelector('#start').removeAttribute('disabled')
+
+    document.querySelector('#resume').setAttribute('disabled',"")
+    document.querySelector('#restart').setAttribute('disabled',"")
+    document.querySelector('#stop').setAttribute('disabled',"")
+}
+
+const chronometer=()=>{
+        chCentiseconds++
+        if(chCentiseconds>99){
+            chSeconds++
+            chCentiseconds=0
+        }
+        if(chSeconds>59){
+            chMinutes++
+            chSeconds=0
+            chCentiseconds=0
+        }
+        if(chMinutes>59){
+            chHours++
+            chMinutes=0
+            chSeconds=0
+            chCentiseconds=0
+        }
+        displayChCentiseconds.innerHTML=`:${stringify(chCentiseconds)}`
+        displayChSeconds.innerHTML=`:${stringify(chSeconds)}`
+        displayChMinutes.innerHTML=`:${stringify(chMinutes)}`
+        displayChHours.innerHTML=`${stringify(chHours)}`
+}

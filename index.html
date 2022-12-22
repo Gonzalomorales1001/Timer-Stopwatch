@@ -55,21 +55,18 @@
             <p class="time" id="hour">00</p>
             <p class="time" id="minute">:00</p>
             <p class="time" id="second">:00</p>
-            <p class="time" id="milisecond">:0000</p>
+            <p class="time" id="centisecond">:00</p>
           </div>
           <div>
             <button class="mb-3 me-1 btn btn-success" id="start" onclick="start()">Start <i class="bi bi-play-circle"></i></button>
-            <button class="mb-3 me-1 btn btn-danger" id="stop" onclick="stop()">Stop <i class="bi bi-pause-circle"></i></button>
-            <button class="mb-3 me-1 btn btn-primary" id="reanude" onclick="start()">Resume <i class="bi bi-arrow-counterclockwise"></i></button>
-            <button class="mb-3 me-1 btn btn-warning" id="restart" onclick="restart()">Restart <i class="bi bi-arrow-clockwise"></i></button>
+            <button class="mb-3 me-1 btn btn-danger" id="stop" disabled onclick="stop()">Stop <i class="bi bi-pause-circle"></i></button>
+            <button class="mb-3 me-1 btn btn-primary" id="resume" disabled onclick="start()">Resume <i class="bi bi-arrow-counterclockwise"></i></button>
+            <button class="mb-3 me-1 btn btn-warning" id="restart" disabled onclick="restart()">Restart <i class="bi bi-arrow-clockwise"></i></button>
           </div>
         </article>
       </section>
     </main>
     <footer class="text-center bg-dark text-light py-3">
-      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#TimeOutModal">
-        Launch demo modal
-      </button>
     </footer>
     <!-- custom time modal -->
     <div class="modal fade" id="customTimeModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -108,9 +105,10 @@
           </div>
           <div class="modal-body">
             <div class="d-flex justify-content-center text-black">
-              <p class="time" id="hour">-00</p>
-              <p class="time" id="minute">:00</p>
-              <p class="time" id="second">:00</p>
+              <p class="time">-</p>
+              <p class="time" id="modalHour">00</p>
+              <p class="time" id="modalMinute">:00</p>
+              <p class="time" id="modalSecond">:00</p>
             </div>
           </div>
           <div class="modal-footer">
