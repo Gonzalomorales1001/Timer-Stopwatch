@@ -54,11 +54,12 @@ const timer=(timeSet,custom=0)=>{
         hours=parseInt(document.querySelector('#customHours').value)
         minutes=parseInt(document.querySelector('#customMinutes').value)
         seconds=parseInt(document.querySelector('#customSeconds').value)
-
+        
         if(isNaN(hours)){hours=0}
         if(isNaN(minutes)){minutes=0}
         if(isNaN(seconds)){seconds=0}
-
+        
+        seconds==0&&minutes==0&&hours==0?startTime.className='btn btn-success disabled':
         displayHours.innerHTML=stringify(hours)
         displayMinutes.innerHTML=stringify(minutes)
         displaySeconds.innerHTML=stringify(seconds)
@@ -195,6 +196,8 @@ const start=()=>{
 
 const stop=()=>{
     clearInterval(chInterval)
+
+    document.querySelector('#stop').setAttribute('disabled',"")
     
     document.querySelector('#resume').removeAttribute('disabled')
     document.querySelector('#restart').removeAttribute('disabled')
