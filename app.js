@@ -118,20 +118,8 @@ const stopTimer=()=>{
 
 // Time Out modal and Alarm
 const timeOutmodal = new bootstrap.Modal(document.getElementById('TimeOutModal'))
-const alarm = new Audio('/sound/alarm.mp3')
+const alarm = new Audio('/sound/alarm.m4a')
 alarm.loop=true
-
-const timeIsOut=()=>{
-    timeOutmodal.show()
-    alarm.currentTime=0
-    alarm.play()
-    modalTimeOutChronometer()
-}
-
-const stopAlarm=()=>{
-    alarm.pause()
-    clearInterval(modalInterval)
-}
 
 let modalSeconds=0
 let modalMinutes=0
@@ -142,6 +130,25 @@ let displayModalMinutes=document.querySelector('#modalMinute')
 let displayModalHours=document.querySelector('#modalHour')
 
 let modalInterval=0
+
+const timeIsOut=()=>{
+    timeOutmodal.show()
+    alarm.currentTime=0
+    alarm.play()
+    modalTimeOutChronometer()
+}
+
+const stopAlarm=()=>{
+    clearInterval(modalInterval)
+    modalSeconds=0
+    modalMinutes=0
+    modalHours=0
+    displayModalSeconds.innerHTML=':00'
+    displayModalMinutes.innerHTML=':00'
+    displayModalHours.innerHTML='00'
+    alarm.pause()
+}
+
 
 const modalTimeOutChronometer=()=>{
     modalInterval=setInterval(()=>{
@@ -158,11 +165,10 @@ const modalTimeOutChronometer=()=>{
 
         displayModalSeconds.innerHTML=`:${stringify(modalSeconds)}`
         displayModalMinutes.innerHTML=`:${stringify(modalMinutes)}`
-        displayModalHours.innerHTML=`:${stringify(modalHours)}`
+        displayModalHours.innerHTML=stringify(modalHours)
 
     },1000)
 }
-
 
 //chronometer
 let chCentiseconds=0
