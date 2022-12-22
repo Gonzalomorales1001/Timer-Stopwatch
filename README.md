@@ -12,7 +12,7 @@ The timer not only offers default values, you can also define a custom time. Whe
 - Javascript
 
 ##### Font Family
-- [Ticking Timebomb BB Font Family] https://www.1001fonts.com/ticking-timebomb-bb-font.html
+- [Ticking Timebomb BB Font Family](https://www.1001fonts.com/ticking-timebomb-bb-font.html)
 
 ##### Alarm Sound
 - Minecraft Note Block Sound
